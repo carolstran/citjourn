@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>citjourn</title>
+        <link rel="stylesheet" type="text/css" href="/public/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-animate.min.js" charset="utf-8"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+        <script src="/app/app.js"></script>
+        <script src="/app/nav.js"></script>
+        <script src="/app/routes.js"></script>
+        <script src="/app/upload.js"></script>
+        <script src="/app/comments.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>citjourn</h1>
+            <p id="slogan">Real stories told by real people.
+            <citjourn-nav></citjourn-nav>
+        </header>
+
+        <div ui-view="main"></div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="/public/script.js" charset="utf-8"></script>
+    </body>
+</html>

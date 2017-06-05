@@ -1,0 +1,31 @@
+<main class="image-page" ng-controller="singleImageCtrl">
+    <div id="image-wrapper">
+        <img id="single-image" src="{{image.image_url}}"><br>
+        <h2 class="single-img-title">{{image.title}}</h2>
+        <p class="single-photo-cred">By {{image.username}}
+        <p class="description">{{image.description}}<br><br>
+        <div id="verified"><p><span ng-click="verifyImage()" id="verify-span">Verify this story: &#10003; {{image.verified}}</span>
+    </div>
+
+    <button id="showCommentsButton" class="input-button" ng-click="showComments = !showComments">COMMENTS</button>
+    <div id="comment-container" ng-show="showComments">
+        <div id="image-comments-wrapper">
+            <div class="actual-comment-wrapper" ng-if="comments.length > 0" ng-repeat="comment in comments | reverse">
+                <p class="commenter-name">{{comment.username}}: <p class="comment-content">{{comment.comment}}
+            </div>
+        </div>
+
+        <div class="post-comment-wrapper">
+            <form class="post-comment-form">
+                <input id="username-comment-input" ng-model="comment.username" name="username" maxlength="50" type="text" placeholder="Username" required>
+                <input id="comment-content-input" ng-model="comment.comment" maxlength="140" name="comment" type="text" placeholder="What do you think?" required><br>
+
+                <input id="image-id" type="hidden" ng-model="comment.id" name="id" ng-value="image.id">
+
+                <button class="input-button" ng-click="submitComment(comment)" type="submit">SHARE</button>
+            </form>
+        </div>
+    </div>
+
+    <button class="input-button" ui-sref="feed">BACK TO FEED</button>
+</main>

@@ -1,0 +1,16 @@
+<main ng-controller="imageFeedCtrl">
+    <div id="img-feed">
+        <div class="img-wrap" ng-if="feed.length > 0" ng-repeat="image in feed | reverse | limitTo: imageLimit">
+            <img src="{{image.image_url}}">
+            <div class="text-wrap">
+                <h2 class="img-title">{{image.title}}</h2><br><p class="photo-cred">By {{image.username}}<br><br>
+                <p class="photo-cred">&#10003; {{image.verified}}<br>
+                <button class="input-button" ui-sref="image({id: image.id})">FULL STORY</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="more-button">
+        <button class="input-button" ng-click="seeMoreImages(6)">MORE</button>
+    </div>
+</main>

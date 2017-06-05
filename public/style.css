@@ -1,0 +1,291 @@
+body {
+    background-color: #000;
+    margin: 0;
+}
+
+a, a:hover {
+    cursor: default;
+}
+
+/* HEADER */
+
+header {
+    text-align: center;
+}
+
+h1 {
+    font-size: 46px;
+    font-family: Oswald, sans-serif;
+    color: #FFF;
+    margin: 0
+}
+
+#slogan {
+    font-family: Oswald, sans-serif;
+    color: #FFF;
+    margin: 0;
+}
+
+/* NAV BAR */
+
+nav {
+    background-color: #FFF;
+    font-family: Oswald, sans-serif;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+nav > a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #000;
+}
+
+nav > a:hover {
+    text-decoration: underline;
+}
+
+.nav-feed {
+    padding-right: 35px;
+}
+
+.nav-upload {
+    padding-right: 20px;
+}
+
+/* NEWS FEED */
+
+#img-feed {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.img-title {
+    font-family: Oswald, sans-serif;
+    font-size: 30px;
+    padding-top: 75px;
+    margin: 0;
+}
+
+.photo-cred {
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    margin: 0;
+}
+
+.img-wrap {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 350px;
+  height: 350px;
+}
+
+.img-wrap > img {
+  width: 350px;
+  height: 350px;
+  position: absolute;
+}
+
+.text-wrap {
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+    height: 350px;
+    width: 350px;
+    background: #000;
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .2s, visibility .2s;
+}
+
+.img-wrap:hover .text-wrap {
+  visibility: visible;
+  opacity: 0.85;
+}
+
+#more-button {
+    margin: auto 0;
+    text-align: center;
+}
+
+/* SINGLE IMAGE */
+
+.image-page {
+    text-align: center;
+    margin: auto 0;
+    padding-bottom: 50px;
+}
+
+#single-image {
+    max-height: 500px;
+    padding-top: 15px;
+}
+
+.single-img-title {
+    font-family: Oswald, sans-serif;
+    color: #FFF;
+    margin-bottom: 0;
+}
+
+.single-photo-cred {
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    color: #FFF;
+    margin: 0;
+}
+
+.description {
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    color: #FFF;
+    max-width: 600px;
+    margin: 25px auto 15px auto;
+    text-align: justify;
+}
+
+#verified {
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    color: #FFF;
+    cursor: default;
+}
+
+/* COMMENTS */
+
+#comment-container {
+    padding: 15px 0 15px 0;
+}
+
+.actual-comment-wrapper {
+    padding-top: 10px;
+}
+
+.commenter-name {
+    font-family: Raleway, sans-serif;
+    font-size: 12px;
+    color: #A9A9A9;
+    display: inline-block;
+    padding-right: 5px;
+    margin: 0;
+}
+
+.comment-content {
+    font-family: Raleway, sans-serif;
+    font-size: 12px;
+    color: #FFF;
+    display: inline-block;
+    margin: 0;
+}
+
+.post-comment-form {
+    padding-top: 30px;
+}
+
+#username-comment-input {
+    width: 75px;
+    display: inline-block;
+}
+
+#comment-content-input {
+    width: 250px;
+    display: inline-block;
+}
+
+/* UPLOAD IMAGE */
+
+.upload-wrapper {
+    margin: auto 0;
+    text-align: center;
+}
+
+#upload-page-title {
+    font-family: Oswald, sans-serif;
+    font-size: 30px;
+    color: #FFF;
+}
+
+.upload-input {
+    width: 125px;
+}
+
+.description-input {
+    width: 250px;
+    height: 200px;
+    overflow: auto;
+}
+
+/* FORMS */
+
+label {
+    font-family: Raleway, sans-serif;
+    font-size: 14px;
+    color: #A9A9A9;
+}
+
+form {
+    padding: 15px;
+}
+
+input {
+    font-family: Raleway, sans-serif;
+    padding: 0 5px 0 5px;
+}
+
+.input-button {
+    font-family: Oswald, sans-serif;
+    border: 1px solid #000;
+    background-color: #FFF;
+    padding: 5px 10px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* MEDIA QUERIES */
+
+@media all and (max-width: 870px) and (min-width: 220px) {
+    nav {
+        top:20%;
+        width: 100%;
+        text-align: center;
+        margin: auto;
+        margin-top: 10px;
+    }
+
+    .img-wrap {
+        width : 100%;
+    }
+
+    #single-image {
+        width: 100%;
+    }
+
+}
+
+@media all and (max-width: 720px) and (min-width: 220px) {
+    .single-img-title {
+        max-width: 300px;
+        font-size: 32px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .description {
+        max-width: 315px;
+    }
+
+    .actual-comment-wrapper {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+
+    .commenter-name, .comment-content {
+        font-size: 14px;
+    }
+}

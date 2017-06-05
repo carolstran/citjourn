@@ -1,0 +1,16 @@
+<main ng-controller="uploadImageCtrl">
+    <div class="upload-wrapper">
+        <h2 id="upload-page-title">Upload an image to share your story</h2>
+        <form id="file-form" method="POST" ng-submit="update()">
+            <input ng-click="clear($event)" ng-model="image.title" id="title" class="upload-input" type="text" maxlength="50" name="title" placeholder="Title" required><br><br>
+
+            <input ng-click="clear($event)" ng-model="image.username" type="text" maxlength="50" name="username" id="username" class="upload-input" placeholder="Username" required><br><br>
+
+            <textarea ng-click="clear($event)" ng-model="image.description" type="text" name="description" placeholder="What did you see?" id="description" class="description-input" required></textarea><br><br>
+
+            <div id="upload-image">
+                <input ng-model="image.file" type="file" name="file" class="input-button" id="local-file" required><br>
+                <button ng-click="submitUpload(image)" name="button" id="file-submit" type="submit" class="input-button">UPLOAD</button>
+            </div>
+        </form>
+    </div>
