@@ -28,6 +28,9 @@ function uploadImage(file, username, title, description) {
 
     return new Promise(function(resolve, reject) {
         db.query(q, params).then(function(results) {
+            results.rows.forEach(row => {
+                row.image_url = 'https://s3.amazonaws.com/citjourn/' + row.image_url;
+            });
             resolve(results.rows);
         }).catch(function(err) {
             console.log('Unable to upload image', err);

@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const db = require('./config/db');
+const toS3 = require('./config/toS3');
 
 const bodyParser = require('body-parser');
 const multer = require('multer');
@@ -56,13 +57,17 @@ app.post('/uploadImage', uploader.single('file'), function(req, res) {
     let description = req.body.description;
 
     if (req.file) {
-        db.uploadImage(file, username, title, description).then(function(results) {
-            res.json({
-                success: true,
-                file: `/uploads/${req.file.filename}`
+        toS3(req.file).then(function() {
+            db.uploadImage(file, username, title, description).then(function(results) {
+                res.json({
+                    success: true,
+                    file: `/uploads/${req.file.filename}`
+                });
+            }).catch(function(err) {
+                console.log('Unable to upload image', err);
             });
         }).catch(function(err) {
-            console.log('Unable to upload image', err);
+            console.log('Unable to upload image to S3', err);
         });
     } else {
         res.json({
