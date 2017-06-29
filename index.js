@@ -55,6 +55,7 @@ app.post('/uploadImage', uploader.single('file'), function(req, res) {
     let username = req.body.username;
     let title = req.body.title;
     let description = req.body.description;
+    console.log(req.file);
 
     if (req.file) {
         toS3(req.file).then(function() {
