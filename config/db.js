@@ -6,13 +6,11 @@ const db = spicedPg(dbUrl);
 function getImageFeed() {
     let q = `SELECT * FROM images;`;
 
-    return new Promise(function(resolve, reject) {
-        db.query(q, []).then(function(results) {
-            resolve(results.rows);
-        }).catch(function(err) {
-            console.log('Unable to get image feed', err);
-            reject(err);
-        });
+    return db.query(q, []).then(function(results) {
+        return results.rows;
+    }).catch(function(err) {
+        console.log('Error getImageFeed in DB', err);
+        throw err;
     });
 }
 
@@ -26,16 +24,14 @@ function uploadImage(file, username, title, description) {
         description
     ];
 
-    return new Promise(function(resolve, reject) {
-        db.query(q, params).then(function(results) {
-            results.rows.forEach(row => {
-                row.image_url = 'https://s3.amazonaws.com/citjourn/' + row.image_url;
-            });
-            resolve(results.rows);
-        }).catch(function(err) {
-            console.log('Unable to upload image', err);
-            reject(err);
+    return db.query(q, params).then(function(results) {
+        results.rows.forEach(row => {
+            row.image_url = 'https://s3.amazonaws.com/citjourn/' + row.image_url;
         });
+        return results.rows;
+    }).catch(function(err) {
+        console.log('Error uploadImage in DB', err);
+        throw err;
     });
 }
 
@@ -45,13 +41,11 @@ function getSingleImage(id) {
         id
     ];
 
-    return new Promise(function(resolve, reject) {
-        db.query(q, params).then(function(result) {
-            resolve(result.rows);
-        }).catch(function(err) {
-            console.log('Unable to retrieve single image', err);
-            reject(err);
-        });
+    return db.query(q, params).then(function(result) {
+        return result.rows;
+    }).catch(function(err) {
+        console.log('Error getSingleImage in DB', err);
+        throw err;
     });
 }
 
@@ -61,14 +55,11 @@ function getCommentsForImage(imageId) {
         imageId
     ];
 
-    return new Promise(function(resolve, reject) {
-        db.query(q, params).then(function(results) {
-            // console.log('These are the results of the query', results);
-            resolve(results);
-        }).catch(function(err) {
-            console.log('Unable to get comments', err);
-            reject(err);
-        });
+    return db.query(q, params).then(function(results) {
+        return results;
+    }).catch(function(err) {
+        console.log('Error getCommentsForImage in DB', err);
+        throw err;
     });
 }
 
@@ -81,13 +72,11 @@ function postComment(imageId, username, comment) {
         comment
     ];
 
-    return new Promise(function(resolve, reject) {
-        db.query(q, params).then(function(result) {
-            resolve(result.rows);
-        }).catch(function(err) {
-            console.log('Unable to post comment', err);
-            reject(err);
-        });
+    return db.query(q, params).then(function(result) {
+        return result.rows;
+    }).catch(function(err) {
+        console.log('Error postComment in DB', err);
+        throw err;
     });
 }
 
@@ -98,13 +87,11 @@ function addVerifyToSingleImage(numberOfVerified, imageId) {
         imageId
     ];
 
-    return new Promise(function(resolve, reject) {
-        db.query(q, params).then(function(results) {
-            resolve(results);
-        }).catch(function(err) {
-            console.log('Unable to add verify', err);
-            reject(err);
-        });
+    return db.query(q, params).then(function(results) {
+        return results;
+    }).catch(function(err) {
+        console.log('Error addVerifyToSingleImage in DB', err);
+        throw err;
     });
 }
 

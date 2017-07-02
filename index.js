@@ -139,5 +139,5 @@ app.get('*', function(req, res) {
 
 // SERVER
 app.listen(3000, function() {
-    console.log('LISTENING');
+    console.log('Listening on 3000');
 });
