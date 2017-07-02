@@ -10,6 +10,8 @@ angular.module('app.comments', [])
     }).then(function(res) {
         $scope.image = res.data[0];
         $scope.image.id = res.data[0].id;
+    }).catch(function(err) {
+        console.log('Unable to get single image - client side', err);
     });
 
     $http({
@@ -18,6 +20,8 @@ angular.module('app.comments', [])
         params: { id: $stateParams.id }
     }).then(function(res) {
         $scope.comments = res.data.comments;
+    }).catch(function(err) {
+        console.log('Unable to get comments for image - client side', err);
     });
 
     $scope.submitComment = function(comment) {
@@ -32,11 +36,12 @@ angular.module('app.comments', [])
             }),
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).then(function(data) {
-            console.log('This is data from HTTP request', data);
             $scope.comments.push({
                 username: comment.username,
                 comment: comment.comment
             });
+        }).catch(function(err) {
+            console.log('Unable to submit comment - client side', err);
         });
     };
 
@@ -51,7 +56,7 @@ angular.module('app.comments', [])
         }).then(function(res) {
             $scope.image.verified += 1;
         }).catch(function(err) {
-            console.log(err);
+            console.log('Unable to verify image - client side', err);
         });
     };
 
