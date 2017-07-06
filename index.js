@@ -55,10 +55,9 @@ app.post('/uploadImage', uploader.single('file'), function(req, res) {
     let username = req.body.username;
     let title = req.body.title;
     let description = req.body.description;
-    console.log(req.file);
 
     if (req.file) {
-        toS3(req.file).then(function() {
+        toS3.makeS3Request(req, res, function(result) {
             db.uploadImage(file, username, title, description).then(function(results) {
                 res.json({
                     success: true,
@@ -67,8 +66,6 @@ app.post('/uploadImage', uploader.single('file'), function(req, res) {
             }).catch(function(err) {
                 console.log('Unable to upload image', err);
             });
-        }).catch(function(err) {
-            console.log('Unable to upload image to S3', err);
         });
     } else {
         res.json({

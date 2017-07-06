@@ -1,5 +1,13 @@
 const spicedPg = require('spiced-pg');
 const dbUrl = require('./passwords.json').dbUrl;
+
+// let dbUrl;
+// if (!process.env.DATABASE_URL) {
+//     dbUrl = require('./passwords.json').dbUrl;
+// } else {
+//     dbUrl = process.env.DATABASE_URL;
+// }
+
 const db = spicedPg(dbUrl);
 
 // FUNCTIONS
@@ -26,7 +34,7 @@ function uploadImage(file, username, title, description) {
 
     return db.query(q, params).then(function(results) {
         results.rows.forEach(row => {
-            row.image_url = 'https://s3.amazonaws.com/citjourn/' + row.image_url;
+            row.image_url = 'https://s3.amazonaws.com/citjourn-bucket/' + row.image_url;
         });
         return results.rows;
     }).catch(function(err) {

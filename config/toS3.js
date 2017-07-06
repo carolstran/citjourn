@@ -1,21 +1,35 @@
 const fs = require('fs');
 const knox = require('knox');
-const creds = require('./passwords.json');
+
+let creds;
+if (process.env.NODE_ENV == 'production') {
+    creds = process.env;
+} else {
+    creds = require('./passwords.json');
+}
 
 const client = knox.createClient({
     key: creds.awsKey,
     secret: creds.awsSecret,
-    bucket: 'citjourn'
+    bucket: 'citjourn-bucket'
 });
 
-module.exports = file => {
-    return new Promise((resolve, reject) => {
-        const req = client.put(file.filename, {
-            'Content-Type': file.mimetype,
-            'Content-Length': file.size,
-            'x-amz-acl': 'public-read'
-        }).on('response', (res) => res.statusCode == 200 ? resolve() : reject(res.statusCode));
-        const readStream = fs.createReadStream(file.path);
-        readStream.pipe(req);
+const makeS3Request = (req, res, next) => {
+    const s3Request = client.put(req.file.filename, {
+        'Content-Type': req.file.mimetype,
+        'Content-Length': req.file.size,
+        'x-amz-acl': 'public-read'
+    });
+    const readStream = fs.createReadStream(req.file.path);
+    readStream.pipe(s3Request);
+    s3Request.on('response', s3Response => {
+        if (s3Response.statusCode == 200) {
+            next();
+        } else {
+            console.log(s3Response.statusCode);
+            res.json({ success: false });
+        }
     });
 };
+
+module.exports.makeS3Request = makeS3Request;
