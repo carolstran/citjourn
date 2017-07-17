@@ -9,8 +9,8 @@ if (process.env.NODE_ENV == 'production') {
 }
 
 const client = knox.createClient({
-    key: creds.awsKey,
-    secret: creds.awsSecret,
+    key: creds.AWS_KEY,
+    secret: creds.AWS_SECRET,
     bucket: 'citjourn-bucket'
 });
 
