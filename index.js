@@ -51,7 +51,7 @@ app.get('/imageFeed', function(req, res) {
 });
 
 app.post('/uploadImage', uploader.single('file'), function(req, res) {
-    let file = `/uploads/${req.file.filename}`;
+    let file = `${req.file.filename}`;
     let username = req.body.username;
     let title = req.body.title;
     let description = req.body.description;
@@ -60,8 +60,7 @@ app.post('/uploadImage', uploader.single('file'), function(req, res) {
         toS3.makeS3Request(req, res, function(result) {
             db.uploadImage(file, username, title, description).then(function(results) {
                 res.json({
-                    success: true,
-                    file: `/uploads/${req.file.filename}`
+                    success: true
                 });
             }).catch(function(err) {
                 console.log('Unable to upload image', err);

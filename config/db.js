@@ -7,6 +7,9 @@ function getImageFeed() {
     let q = `SELECT * FROM images;`;
 
     return db.query(q, []).then(function(results) {
+        results.rows.forEach(row => {
+            row.image_url = 'https://s3.amazonaws.com/citjourn-bucket/' + row.image_url;
+        });
         return results.rows;
     }).catch(function(err) {
         console.log('Error getImageFeed in DB', err);
@@ -26,6 +29,7 @@ function uploadImage(file, username, title, description) {
 
     return db.query(q, params).then(function(results) {
         results.rows.forEach(row => {
+            console.log('Anything');
             row.image_url = 'https://s3.amazonaws.com/citjourn-bucket/' + row.image_url;
         });
         return results.rows;
@@ -42,6 +46,9 @@ function getSingleImage(id) {
     ];
 
     return db.query(q, params).then(function(result) {
+        result.rows.forEach(row => {
+            row.image_url = 'https://s3.amazonaws.com/citjourn-bucket/' + row.image_url;
+        });
         return result.rows;
     }).catch(function(err) {
         console.log('Error getSingleImage in DB', err);
