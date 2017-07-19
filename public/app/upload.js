@@ -19,7 +19,6 @@ angular.module('app.upload', [])
                     headers: { 'Content-Type': undefined },
                     transformRequest: angular.identity
                 }).then(function(data) {
-                    console.log('This is data from ajax', data);
                     $state.go('feed');
                 });
             }
