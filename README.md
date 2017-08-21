@@ -5,4 +5,4 @@ Anyone can share their story by uploading a local image, along with a title, use
 
 Technologies: AngularJS, Node.js, Express.js, PostgreSQL and Amazon S3 for image storage.
 
-Hosted on Heroku. See it live [here](https://citjourn.herokuapp.com/).
+Hosted on [Heroku](https://citjourn.herokuapp.com/).
