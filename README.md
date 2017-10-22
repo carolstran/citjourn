@@ -1,5 +1,5 @@
 # citjourn
-An image board SPA (Single-Page Application) to help mobilize citizen journalism.
+An image board SPA (Single-Page Application) to help mobilize citizen journalism. Check it out [here](https://citjourn.herokuapp.com/).
 
 ![citjourn-home](https://user-images.githubusercontent.com/26869552/31866015-e77c7742-b778-11e7-8cd2-8b34e940b678.png)
 
