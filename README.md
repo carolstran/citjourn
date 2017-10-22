@@ -7,9 +7,7 @@ An image board SPA (Single-Page Application) to help mobilize citizen journalism
 **Backend**:  Node.js, Express.js, and PostgreSQL
 
 ## How citjourn Works
-Anyone can share their story by uploading a local image, along with a title, username and description.
-
-Others on the site can comment on an image or verify a story - similar to a ‘like’ button.
+Anyone can share their story by uploading a local image, along with a title, username and description. Others on the site can comment on an image or verify a story - similar to a ‘like’ button.
 
 ## Other Key Aspects
 - Images are displayed as cards using Flexbox
